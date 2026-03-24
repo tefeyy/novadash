@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
+import ProcessMonitor from './ProcessMonitor'
 import { io } from 'socket.io-client'
 import Login from './Login'
+import MinecraftCard from './MinecraftCard'
 
 let socket = null
 
@@ -43,6 +45,7 @@ export default function App() {
   }, [token])
 
   if (!token) return <Login onLogin={setToken} />
+
   const cpuColor = stats?.cpu > 80 ? 'text-red-400' : stats?.cpu > 50 ? 'text-yellow-400' : 'text-green-400'
   const memPercent = stats ? ((stats.memUsed / stats.memTotal) * 100).toFixed(1) : null
   const memColor = memPercent > 85 ? 'text-red-400' : memPercent > 70 ? 'text-yellow-400' : 'text-green-400'
@@ -64,8 +67,9 @@ export default function App() {
 
       {/* Main content */}
       <div className="px-8 py-8">
-        <h2 className="text-gray-400 text-xs font-semibold uppercase tracking-widest mb-4">Server Health</h2>
 
+        {/* Server Health */}
+        <h2 className="text-gray-400 text-xs font-semibold uppercase tracking-widest mb-4">Server Health</h2>
         {!stats ? (
           <p className="text-gray-500">Connecting to server...</p>
         ) : (
@@ -96,6 +100,19 @@ export default function App() {
             />
           </div>
         )}
+
+        {/* Game Servers */}
+        <h2 className="text-gray-400 text-xs font-semibold uppercase tracking-widest mt-10 mb-4">Game Servers</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <MinecraftCard />
+        </div>
+
+{/* Processes */}
+        <h2 className="text-gray-400 text-xs font-semibold uppercase tracking-widest mt-10 mb-4">Processes</h2>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <ProcessMonitor />
+        </div>
+
       </div>
     </div>
   )

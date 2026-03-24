@@ -1,4 +1,5 @@
 require('dotenv').config();
+const processRoutes = require('./routes/processes');
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
@@ -6,8 +7,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const si = require('systeminformation');
 
-const healthRoutes = require('./routes/health');
-const authRoutes = require('./routes/auth');
+const minecraftRoutes = require('./routes/minecraft');
 
 const app = express();
 const server = http.createServer(app);
@@ -21,8 +21,8 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-app.use('/api', healthRoutes);
-app.use('/api', authRoutes);
+app.use('/api', minecraftRoutes);
+app.use('/api', processRoutes);
 
 // Root check
 app.get('/', (req, res) => {
