@@ -10,6 +10,7 @@ const healthRoutes = require('./routes/health');
 const authRoutes = require('./routes/auth');
 const minecraftRoutes = require('./routes/minecraft');
 const processRoutes = require('./routes/processes');
+const actionsRoutes = require('./routes/actions');
 
 const app = express();
 const server = http.createServer(app);
@@ -27,6 +28,7 @@ app.use('/api', healthRoutes);
 app.use('/api', authRoutes);
 app.use('/api', minecraftRoutes);
 app.use('/api', processRoutes);
+app.use('/api', actionsRoutes);
 
 // Root check
 app.get('/', (req, res) => {

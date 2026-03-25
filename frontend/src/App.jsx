@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import ProcessMonitor from './ProcessMonitor'
+import QuickActions from './components/QuickActions'
 import { io } from 'socket.io-client'
 import Login from './Login'
 import MinecraftCard from './MinecraftCard'
@@ -54,7 +55,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       {/* Header */}
-      <div className="border-b border-gray-800 px-8 py-4 flex items-center justify-between">
+      <div className="border-b border-gray-800 px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-white">NovaDash</h1>
           <p className="text-gray-500 text-sm">VPS Command Centre — volkris.net</p>
@@ -66,7 +67,7 @@ export default function App() {
       </div>
 
       {/* Main content */}
-      <div className="px-8 py-8">
+      <div className="px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
 
         {/* Server Health */}
         <h2 className="text-gray-400 text-xs font-semibold uppercase tracking-widest mb-4">Server Health</h2>
@@ -107,11 +108,15 @@ export default function App() {
           <MinecraftCard />
         </div>
 
-{/* Processes */}
+        {/* Processes */}
         <h2 className="text-gray-400 text-xs font-semibold uppercase tracking-widest mt-10 mb-4">Processes</h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <ProcessMonitor />
         </div>
+
+        {/* Quick Actions */}
+        <h2 className="text-gray-400 text-xs font-semibold uppercase tracking-widest mt-10 mb-4">Quick Actions</h2>
+        <QuickActions />
 
       </div>
     </div>
