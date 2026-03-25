@@ -11,6 +11,8 @@ const authRoutes = require('./routes/auth');
 const minecraftRoutes = require('./routes/minecraft');
 const processRoutes = require('./routes/processes');
 const actionsRoutes = require('./routes/actions');
+const agentsRoutes = require('./routes/agents');
+const logsRoutes = require('./routes/logs');
 
 const app = express();
 const server = http.createServer(app);
@@ -29,6 +31,8 @@ app.use('/api', authRoutes);
 app.use('/api', minecraftRoutes);
 app.use('/api', processRoutes);
 app.use('/api', actionsRoutes);
+app.use('/api', agentsRoutes);
+app.use('/api', logsRoutes);
 
 // Root check
 app.get('/', (req, res) => {

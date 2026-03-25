@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import ProcessMonitor from './ProcessMonitor'
 import QuickActions from './components/QuickActions'
+import AgentStatus from './components/AgentStatus'
+import LogViewer from './components/LogViewer'
 import { io } from 'socket.io-client'
 import Login from './Login'
 import MinecraftCard from './MinecraftCard'
@@ -117,6 +119,14 @@ export default function App() {
         {/* Quick Actions */}
         <h2 className="text-gray-400 text-xs font-semibold uppercase tracking-widest mt-10 mb-4">Quick Actions</h2>
         <QuickActions />
+
+        {/* Agent Status */}
+        <h2 className="text-gray-400 text-xs font-semibold uppercase tracking-widest mt-10 mb-4">Agents</h2>
+        <AgentStatus />
+
+        {/* Log Viewer */}
+        <h2 className="text-gray-400 text-xs font-semibold uppercase tracking-widest mt-10 mb-4">Logs</h2>
+        <LogViewer />
 
       </div>
     </div>
