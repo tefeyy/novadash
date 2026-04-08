@@ -32,21 +32,25 @@ function ruleLargeFiles() {
   return findings;
 }
 
-// Rule: Log files older than 7 days in /var/log
+// Rule: Log files older than 30 days in /var/log (excluding system-managed dirs)
 function ruleOldLogs() {
   const findings = [];
   try {
-    const output = execSync(
-      'find /var/log -maxdepth 4 -type f -mtime +7 2>/dev/null || true',
-      { timeout: 30000 }
-    ).toString().trim();
+    const excl = [
+      '/var/log/journal', '/var/log/apt', '/var/log/dpkg',
+      '/var/log/unattended-upgrades', '/var/log/dist-upgrade',
+      '/var/log/installer', '/var/log/landscape',
+    ];
+    const notArgs = excl.map(d => '-not -path ' + d + '/*').join(' ');
+    const cmd = 'find /var/log -type f -mtime +30 ' + notArgs + ' 2>/dev/null || true';
+    const output = execSync(cmd, { timeout: 30000 }).toString().trim();
     if (output) {
       for (const filePath of output.split('\n').filter(Boolean)) {
         findings.push({
           rule_name: 'old_logs',
           severity: 'info',
           message: `Old log file: ${filePath}`,
-          detail: 'Last modified more than 7 days ago',
+          detail: 'Last modified more than 30 days ago',
         });
       }
     }
