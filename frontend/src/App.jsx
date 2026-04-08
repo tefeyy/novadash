@@ -3,6 +3,7 @@ import ProcessMonitor from './ProcessMonitor'
 import QuickActions from './components/QuickActions'
 import AgentStatus from './components/AgentStatus'
 import LogViewer from './components/LogViewer'
+import NovaMindPanel from './components/NovaMindPanel'
 import { io } from 'socket.io-client'
 import Login from './Login'
 import MinecraftCard from './MinecraftCard'
@@ -127,6 +128,10 @@ export default function App() {
         {/* Log Viewer */}
         <h2 className="text-gray-400 text-xs font-semibold uppercase tracking-widest mt-10 mb-4">Logs</h2>
         <LogViewer />
+
+        {/* NovaMind */}
+        <h2 className="text-gray-400 text-xs font-semibold uppercase tracking-widest mt-10 mb-4">NovaMind</h2>
+        <NovaMindPanel />
 
       </div>
     </div>

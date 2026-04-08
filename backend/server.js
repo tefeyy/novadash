@@ -13,6 +13,7 @@ const processRoutes = require('./routes/processes');
 const actionsRoutes = require('./routes/actions');
 const agentsRoutes = require('./routes/agents');
 const logsRoutes = require('./routes/logs');
+const novamindRoutes = require('./routes/novamind');
 
 const app = express();
 const server = http.createServer(app);
@@ -33,6 +34,7 @@ app.use('/api', processRoutes);
 app.use('/api', actionsRoutes);
 app.use('/api', agentsRoutes);
 app.use('/api', logsRoutes);
+app.use('/api', novamindRoutes);
 
 // Root check
 app.get('/', (req, res) => {
